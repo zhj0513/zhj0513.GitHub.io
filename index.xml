@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Gakkiの一般男性</title>
-        <link>https://example.com/</link>
+        <link>https://zhj0513.github.io/</link>
         <description>Recent content on Gakkiの一般男性</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 21 Sep 2021 05:37:05 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 21 Sep 2021 05:37:05 +0800</lastBuildDate><atom:link href="https://zhj0513.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo &#43; Stack 博客搭建指南</title>
-        <link>https://example.com/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</link>
+        <link>https://zhj0513.github.io/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</link>
         <pubDate>Tue, 21 Sep 2021 05:37:05 +0800</pubDate>
         
-        <guid>https://example.com/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</guid>
-        <description>&lt;img src="https://example.com/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/gakki.png" alt="Featured image of post Hugo &#43; Stack 博客搭建指南" /&gt;&lt;h1 id=&#34;hugo--stack-博客搭建指南&#34;&gt;Hugo + Stack 博客搭建指南&lt;/h1&gt;
+        <guid>https://zhj0513.github.io/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</guid>
+        <description>&lt;img src="https://zhj0513.github.io/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/gakki.png" alt="Featured image of post Hugo &#43; Stack 博客搭建指南" /&gt;&lt;h1 id=&#34;hugo--stack-博客搭建指南&#34;&gt;Hugo + Stack 博客搭建指南&lt;/h1&gt;
 &lt;p&gt;Hugo是基于Go语言开发的静态网站构建工具。本博客采用hugo-theme-stack主题搭建。&lt;/p&gt;
 &lt;h2 id=&#34;hugo下载安装&#34;&gt;Hugo下载安装&lt;/h2&gt;
 &lt;ol&gt;
