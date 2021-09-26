@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Gakkiの一般男性</title>
+        <link>https://example.com/</link>
+        <description>Recent content on Gakkiの一般男性</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Tue, 21 Sep 2021 05:37:05 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo &#43; Stack 博客搭建指南</title>
+        <link>https://example.com/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</link>
+        <pubDate>Tue, 21 Sep 2021 05:37:05 +0800</pubDate>
+        
+        <guid>https://example.com/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</guid>
+        <description>&lt;img src="https://example.com/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/gakki.png" alt="Featured image of post Hugo &#43; Stack 博客搭建指南" /&gt;&lt;h1 id=&#34;hugo--stack-博客搭建指南&#34;&gt;Hugo + Stack 博客搭建指南&lt;/h1&gt;
+&lt;p&gt;Hugo是基于Go语言开发的静态网站构建工具。本博客采用hugo-theme-stack主题搭建。&lt;/p&gt;
+&lt;h2 id=&#34;hugo下载安装&#34;&gt;Hugo下载安装&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 Hugo 官方 GitHub 的 &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;Releases&lt;/strong&gt;&lt;/a&gt; 页面&lt;/li&gt;
+&lt;li&gt;选择最新的版本下载（选择 &lt;code&gt;hugo_extended_0.88.1_Windows-64bit.zip&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;将压缩包内的 &lt;code&gt;hugo.exe&lt;/code&gt; 文件解压至 &lt;code&gt;D:\Hugo&lt;/code&gt; 文件夹目录下&lt;/li&gt;
+&lt;li&gt;在 &lt;code&gt;我的电脑&lt;/code&gt;鼠标右键，打开属性&lt;/li&gt;
+&lt;li&gt;依次点击 &lt;code&gt;高级系统设置&lt;/code&gt; - &lt;code&gt;环境变量&lt;/code&gt; ，编辑系统变量中的 &lt;code&gt;Path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在环境变量界面中双击空白行，添加 &lt;code&gt;D:\Hugo&lt;/code&gt;，点击确定&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;确认 Hugo 是否安装成功：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo version
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;创建站点&#34;&gt;创建站点&lt;/h2&gt;
+&lt;p&gt;切换某个目录下，创建站点文件夹：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo new site MySite
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;主题下载&#34;&gt;主题下载&lt;/h2&gt;
+&lt;p&gt;主题的挑选可以到官方的 &lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;主题页面&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本博客采用&lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hugo-theme-stack主题&lt;/a&gt;，该主题由国人开发维护，社区比较活跃， 强力推荐。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd MySite
+git init
+git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
+# 主题有更新时，执行git submodule update
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制&lt;code&gt;MySite\themes\hugo-theme-stack\exampleSite\config.yaml&lt;/code&gt;到&lt;code&gt;MySite\&lt;/code&gt;下，删除默认的&lt;code&gt;config.toml&lt;/code&gt;。复制&lt;code&gt;MySite\themes\hugo-theme-stack\exampleSite\content\&lt;/code&gt;目录下的文件夹到&lt;code&gt;MySite\content\&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;config.yaml修改：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+theme: hugo-theme-stack  
+favicon: /img/github-alt.svg  # favicon文件需MySite\static\img\下
+comments:
+        enabled: false  # 关闭评论
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;更多配置请见：&lt;a class=&#34;link&#34; href=&#34;https://docs.stack.jimmycai.com/zh/configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hugo-theme-stack主题配置&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;创建文章&#34;&gt;创建文章&lt;/h2&gt;
+&lt;p&gt;使用如下命令，创建一篇文章：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 创建带有hugo front matter的文章，draft（草稿）
+# 在front matter添加tags、categories、image,可为文章添加标签、分类、特色图片
+hugo new post/my-first-post.md
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2种方式创建含图片的文章：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在&lt;code&gt;content/post&lt;/code&gt;目录下创建文件夹，文件夹下包含图片文件和文章，文章名需为index.md(Hugo Page Bundles)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;直接在&lt;code&gt;content/post&lt;/code&gt;目录下建立文章文件，图片引用&lt;code&gt;MySite/static&lt;/code&gt;下的图片&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;例如引用MySite/static/img/github-alt.svg图片：![图片名称](/img/github-alt.svg)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;启动-hugo-服务&#34;&gt;启动 Hugo 服务&lt;/h2&gt;
+&lt;p&gt;使用以下命名启动 Hugo 本地预览服务：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# -D表示显示草稿
+hugo server -D
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;打开 &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;http://localhost:1313/&lt;/strong&gt;&lt;/a&gt; ，即可看到站点页面（本地修改将即时更新）。&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/quick-start/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Quick Start · Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.emoji-cheat-sheet.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Emoji cheat sheet&lt;/a&gt;:yum:&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://theme-stack.jimmycai.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hugo-theme-stack示例&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
