@@ -192,7 +192,27 @@ hugo new post/my-first-post.md
 hugo server -D
 </code></pre><p>打开 <a class="link" href="http://localhost:1313/"  target="_blank" rel="noopener"
     ><strong>http://localhost:1313/</strong></a> ，即可看到站点页面（本地修改将即时更新）。</p>
-<h2 id="其他">其他</h2>
+<h1 id="博客部署及更新">博客部署及更新</h1>
+<h2 id="博客部署至github">博客部署至github</h2>
+<p>修改config.yaml文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">baseURL</span> <span class="o">=</span> <span class="s2">&#34;https://&lt;username&gt;.github.io/&#34;</span>
+</code></pre></div><p><strong>节点目录</strong>执行命令：</p>
+<pre tabindex="0"><code>hugo  # 生成静态页面文件至public/目录
+</code></pre><p>进入public文件夹，使用git上传页面文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> public
+git init    <span class="c1">##初始化仓库</span>
+git remote add origin https://github.com/zhj0513/zhj0513.github.io.git    <span class="c1">##链接远程仓库</span>
+git add .
+git commit -m <span class="s2">&#34;first commit&#34;</span>
+git push -u origin master
+</code></pre></div><p>至此，部署完成，可从<code>https://&lt;username&gt;.github.io/</code>访问博客</p>
+<h2 id="博客更新">博客更新：</h2>
+<ol>
+<li>本地使用Markdown新增、修改博客</li>
+<li>在站点目录执行<code>hugo</code>命令更新静态页面</li>
+<li>进入public文件夹，使用git上传页面文件</li>
+</ol>
+<h1 id="其他">其他</h1>
 <ul>
 <li><a class="link" href="https://gohugo.io/getting-started/quick-start/"  target="_blank" rel="noopener"
     >Quick Start · Hugo</a></li>
@@ -362,7 +382,11 @@ hugo server -D
     <li><a href="#主题下载">主题下载</a></li>
     <li><a href="#创建文章">创建文章</a></li>
     <li><a href="#启动-hugo-服务">启动 Hugo 服务</a></li>
-    <li><a href="#其他">其他</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#博客部署至github">博客部署至github</a></li>
+    <li><a href="#博客更新">博客更新：</a></li>
   </ol>
 </nav>
                 </div>

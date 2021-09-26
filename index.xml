@@ -68,7 +68,27 @@ hugo new post/my-first-post.md
 hugo server -D
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;打开 &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;strong&gt;http://localhost:1313/&lt;/strong&gt;&lt;/a&gt; ，即可看到站点页面（本地修改将即时更新）。&lt;/p&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h1 id=&#34;博客部署及更新&#34;&gt;博客部署及更新&lt;/h1&gt;
+&lt;h2 id=&#34;博客部署至github&#34;&gt;博客部署至github&lt;/h2&gt;
+&lt;p&gt;修改config.yaml文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;baseURL&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://&amp;lt;username&amp;gt;.github.io/&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;节点目录&lt;/strong&gt;执行命令：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo  # 生成静态页面文件至public/目录
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;进入public文件夹，使用git上传页面文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+git init    &lt;span class=&#34;c1&#34;&gt;##初始化仓库&lt;/span&gt;
+git remote add origin https://github.com/zhj0513/zhj0513.github.io.git    &lt;span class=&#34;c1&#34;&gt;##链接远程仓库&lt;/span&gt;
+git add .
+git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
+git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;至此，部署完成，可从&lt;code&gt;https://&amp;lt;username&amp;gt;.github.io/&lt;/code&gt;访问博客&lt;/p&gt;
+&lt;h2 id=&#34;博客更新&#34;&gt;博客更新：&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;本地使用Markdown新增、修改博客&lt;/li&gt;
+&lt;li&gt;在站点目录执行&lt;code&gt;hugo&lt;/code&gt;命令更新静态页面&lt;/li&gt;
+&lt;li&gt;进入public文件夹，使用git上传页面文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;其他&#34;&gt;其他&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/quick-start/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Quick Start · Hugo&lt;/a&gt;&lt;/li&gt;
