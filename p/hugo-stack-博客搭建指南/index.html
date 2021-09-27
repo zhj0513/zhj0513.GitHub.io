@@ -57,7 +57,7 @@
 
 
 
-                <span>Back</span>
+                <span>返回</span>
             </a>
         </div>
     
@@ -126,7 +126,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -149,62 +149,62 @@
 <li>在环境变量界面中双击空白行，添加 <code>D:\Hugo</code>，点击确定</li>
 </ol>
 <p>确认 Hugo 是否安装成功：</p>
-<pre tabindex="0"><code>hugo version
-</code></pre><h2 id="创建站点">创建站点</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>hugo version
+</code></pre></div><h2 id="创建站点">创建站点</h2>
 <p>切换某个目录下，创建站点文件夹：</p>
-<pre tabindex="0"><code>hugo new site MySite
-</code></pre><h2 id="主题下载">主题下载</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>hugo new site MySite
+</code></pre></div><h2 id="主题下载">主题下载</h2>
 <p>主题的挑选可以到官方的 <a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
     ><strong>主题页面</strong></a></p>
 <p>本博客采用<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/"  target="_blank" rel="noopener"
     >hugo-theme-stack主题</a>，该主题由国人开发维护，社区比较活跃， 强力推荐。</p>
-<pre tabindex="0"><code>cd MySite
-git init
-git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
-# 主题有更新时，执行git submodule update
-</code></pre><p>复制<code>MySite\themes\hugo-theme-stack\exampleSite\config.yaml</code>到<code>MySite\</code>下，删除默认的<code>config.toml</code>。复制<code>MySite\themes\hugo-theme-stack\exampleSite\content\</code>目录下的文件夹到<code>MySite\content\</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>cd MySite
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>git init
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span># 主题有更新时，执行git submodule update
+</code></pre></div><p>复制<code>MySite\themes\hugo-theme-stack\exampleSite\config.yaml</code>到<code>MySite\</code>下，删除默认的<code>config.toml</code>。复制<code>MySite\themes\hugo-theme-stack\exampleSite\content\</code>目录下的文件夹到<code>MySite\content\</code></p>
 <p><strong>config.yaml修改：</strong></p>
-<pre tabindex="0"><code>
-theme: hugo-theme-stack  
-favicon: /img/github-alt.svg  # favicon文件需MySite\static\img\下
-comments:
-        enabled: false  # 关闭评论
-</code></pre><p>更多配置请见：<a class="link" href="https://docs.stack.jimmycai.com/zh/configuration/"  target="_blank" rel="noopener"
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>theme: hugo-theme-stack  
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>favicon: /img/github-alt.svg  # favicon文件需MySite\static\img\下
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>comments:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>        enabled: false  # 关闭评论
+</code></pre></div><p>更多配置请见：<a class="link" href="https://docs.stack.jimmycai.com/zh/configuration/"  target="_blank" rel="noopener"
     >hugo-theme-stack主题配置</a></p>
 <h2 id="创建文章">创建文章</h2>
 <p>使用如下命令，创建一篇文章：</p>
-<pre tabindex="0"><code># 创建带有hugo front matter的文章，draft（草稿）
-# 在front matter添加tags、categories、image,可为文章添加标签、分类、特色图片
-hugo new post/my-first-post.md
-</code></pre><p>2种方式创建含图片的文章：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span># 创建带有hugo front matter的文章，draft（草稿）
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span># 在front matter添加tags、categories、image,可为文章添加标签、分类、特色图片
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>hugo new post/my-first-post.md
+</code></pre></div><p>2种方式创建含图片的文章：</p>
 <ol>
 <li>
 <p>在<code>content/post</code>目录下创建文件夹，文件夹下包含图片文件和文章，文章名需为index.md(Hugo Page Bundles)</p>
 </li>
 <li>
 <p>直接在<code>content/post</code>目录下建立文章文件，图片引用<code>MySite/static</code>下的图片</p>
-<pre tabindex="0"><code>例如引用MySite/static/img/github-alt.svg图片：![图片名称](/img/github-alt.svg)
-</code></pre></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>例如引用MySite/static/img/github-alt.svg图片：![图片名称](/img/github-alt.svg)
+</code></pre></div></li>
 </ol>
 <h2 id="启动-hugo-服务">启动 Hugo 服务</h2>
 <p>使用以下命名启动 Hugo 本地预览服务：</p>
-<pre tabindex="0"><code># -D表示显示草稿
-hugo server -D
-</code></pre><p>打开 <a class="link" href="http://localhost:1313/"  target="_blank" rel="noopener"
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span># -D表示显示草稿
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>hugo server -D
+</code></pre></div><p>打开 <a class="link" href="http://localhost:1313/"  target="_blank" rel="noopener"
     ><strong>http://localhost:1313/</strong></a> ，即可看到站点页面（本地修改将即时更新）。</p>
 <h1 id="博客部署及更新">博客部署及更新</h1>
 <h2 id="博客部署至github">博客部署至github</h2>
 <p>修改config.yaml文件：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">baseURL</span> <span class="o">=</span> <span class="s2">&#34;https://&lt;username&gt;.github.io/&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#8be9fd;font-style:italic">baseURL</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;https://&lt;username&gt;.github.io/&#34;</span>
 </code></pre></div><p><strong>节点目录</strong>执行命令：</p>
-<pre tabindex="0"><code>hugo  # 生成静态页面文件至public/目录
-</code></pre><p>进入public文件夹，使用git上传页面文件：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> public
-git init    <span class="c1">##初始化仓库</span>
-git remote add origin https://github.com/zhj0513/zhj0513.github.io.git    <span class="c1">##链接远程仓库</span>
-git add .
-git commit -m <span class="s2">&#34;first commit&#34;</span>
-git push -u origin master
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>hugo  # 生成静态页面文件至public/目录
+</code></pre></div><p>进入public文件夹，使用git上传页面文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#8be9fd;font-style:italic">cd</span> public
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>git init    <span style="color:#6272a4">##初始化仓库</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>git remote add origin https://github.com/zhj0513/zhj0513.github.io.git    <span style="color:#6272a4">##链接远程仓库</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>git add .
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>git commit -m <span style="color:#f1fa8c">&#34;first commit&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>git push -u origin master
 </code></pre></div><p>至此，部署完成，可从<code>https://&lt;username&gt;.github.io/</code>访问博客</p>
 <h2 id="博客更新">博客更新：</h2>
 <ol>
@@ -246,7 +246,12 @@ git push -u origin master
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-views">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#6563ff" d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"/></svg>
+	<span id="busuanzi_value_page_pv"></span><span>&nbsp;&nbsp;views</span>
+	</section>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</footer>
 
 
     
@@ -372,7 +377,7 @@ git push -u origin master
 
 
                 </div>
-                <h2 class="widget-title section-title">Table of contents</h2>
+                <h2 class="widget-title section-title">目录</h2>
                 
                 <div class="widget--toc">
                     <nav id="TableOfContents">

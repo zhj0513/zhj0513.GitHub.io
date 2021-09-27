@@ -15,12 +15,12 @@
       <guid>https://zhj0513.github.io/p/hugo-stack-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</guid>
       <description>Hugo + Stack 博客搭建指南 Hugo是基于Go语言开发的静态网站构建工具。本博客采用hugo-theme-stack主题搭建。
 Hugo下载安装  打开 Hugo 官方 GitHub 的 Releases 页面 选择最新的版本下载（选择 hugo_extended_0.88.1_Windows-64bit.zip） 将压缩包内的 hugo.exe 文件解压至 D:\Hugo 文件夹目录下 在 我的电脑鼠标右键，打开属性 依次点击 高级系统设置 - 环境变量 ，编辑系统变量中的 Path 在环境变量界面中双击空白行，添加 D:\Hugo，点击确定  确认 Hugo 是否安装成功：
-hugo version 创建站点 切换某个目录下，创建站点文件夹：
-hugo new site MySite 主题下载 主题的挑选可以到官方的 主题页面
+1hugo version 创建站点 切换某个目录下，创建站点文件夹：
+1hugo new site MySite 主题下载 主题的挑选可以到官方的 主题页面
 本博客采用hugo-theme-stack主题，该主题由国人开发维护，社区比较活跃， 强力推荐。
-cd MySite git init git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack # 主题有更新时，执行git submodule update 复制MySite\themes\hugo-theme-stack\exampleSite\config.yaml到MySite\下，删除默认的config.toml。复制MySite\themes\hugo-theme-stack\exampleSite\content\目录下的文件夹到MySite\content\
+1cd MySite 2git init 3git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack 4# 主题有更新时，执行git submodule update 复制MySite\themes\hugo-theme-stack\exampleSite\config.yaml到MySite\下，删除默认的config.toml。复制MySite\themes\hugo-theme-stack\exampleSite\content\目录下的文件夹到MySite\content\
 config.yaml修改：
- theme: hugo-theme-stack favicon: /img/github-alt.svg # favicon文件需MySite\static\img\下 comments: enabled: false # 关闭评论 更多配置请见：hugo-theme-stack主题配置</description>
+1 2theme: hugo-theme-stack 3favicon: /img/github-alt.svg # favicon文件需MySite\static\img\下 4comments: 5 enabled: false # 关闭评论 更多配置请见：hugo-theme-stack主题配置</description>
     </item>
     
   </channel>

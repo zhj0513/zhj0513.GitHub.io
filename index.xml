@@ -25,62 +25,62 @@
 &lt;li&gt;在环境变量界面中双击空白行，添加 &lt;code&gt;D:\Hugo&lt;/code&gt;，点击确定&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;确认 Hugo 是否安装成功：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo version
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;创建站点&#34;&gt;创建站点&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;hugo version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;创建站点&#34;&gt;创建站点&lt;/h2&gt;
 &lt;p&gt;切换某个目录下，创建站点文件夹：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo new site MySite
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;主题下载&#34;&gt;主题下载&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;hugo new site MySite
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;主题下载&#34;&gt;主题下载&lt;/h2&gt;
 &lt;p&gt;主题的挑选可以到官方的 &lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;strong&gt;主题页面&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;本博客采用&lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;hugo-theme-stack主题&lt;/a&gt;，该主题由国人开发维护，社区比较活跃， 强力推荐。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd MySite
-git init
-git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
-# 主题有更新时，执行git submodule update
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制&lt;code&gt;MySite\themes\hugo-theme-stack\exampleSite\config.yaml&lt;/code&gt;到&lt;code&gt;MySite\&lt;/code&gt;下，删除默认的&lt;code&gt;config.toml&lt;/code&gt;。复制&lt;code&gt;MySite\themes\hugo-theme-stack\exampleSite\content\&lt;/code&gt;目录下的文件夹到&lt;code&gt;MySite\content\&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;cd MySite
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&lt;/span&gt;git init
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&lt;/span&gt;git submodule add https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4&lt;/span&gt;# 主题有更新时，执行git submodule update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;复制&lt;code&gt;MySite\themes\hugo-theme-stack\exampleSite\config.yaml&lt;/code&gt;到&lt;code&gt;MySite\&lt;/code&gt;下，删除默认的&lt;code&gt;config.toml&lt;/code&gt;。复制&lt;code&gt;MySite\themes\hugo-theme-stack\exampleSite\content\&lt;/code&gt;目录下的文件夹到&lt;code&gt;MySite\content\&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;config.yaml修改：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
-theme: hugo-theme-stack  
-favicon: /img/github-alt.svg  # favicon文件需MySite\static\img\下
-comments:
-        enabled: false  # 关闭评论
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;更多配置请见：&lt;a class=&#34;link&#34; href=&#34;https://docs.stack.jimmycai.com/zh/configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&lt;/span&gt;theme: hugo-theme-stack  
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&lt;/span&gt;favicon: /img/github-alt.svg  # favicon文件需MySite\static\img\下
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4&lt;/span&gt;comments:
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5&lt;/span&gt;        enabled: false  # 关闭评论
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更多配置请见：&lt;a class=&#34;link&#34; href=&#34;https://docs.stack.jimmycai.com/zh/configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;hugo-theme-stack主题配置&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;创建文章&#34;&gt;创建文章&lt;/h2&gt;
 &lt;p&gt;使用如下命令，创建一篇文章：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 创建带有hugo front matter的文章，draft（草稿）
-# 在front matter添加tags、categories、image,可为文章添加标签、分类、特色图片
-hugo new post/my-first-post.md
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2种方式创建含图片的文章：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;# 创建带有hugo front matter的文章，draft（草稿）
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&lt;/span&gt;# 在front matter添加tags、categories、image,可为文章添加标签、分类、特色图片
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&lt;/span&gt;hugo new post/my-first-post.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2种方式创建含图片的文章：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;在&lt;code&gt;content/post&lt;/code&gt;目录下创建文件夹，文件夹下包含图片文件和文章，文章名需为index.md(Hugo Page Bundles)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;直接在&lt;code&gt;content/post&lt;/code&gt;目录下建立文章文件，图片引用&lt;code&gt;MySite/static&lt;/code&gt;下的图片&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;例如引用MySite/static/img/github-alt.svg图片：![图片名称](/img/github-alt.svg)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;例如引用MySite/static/img/github-alt.svg图片：![图片名称](/img/github-alt.svg)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;启动-hugo-服务&#34;&gt;启动 Hugo 服务&lt;/h2&gt;
 &lt;p&gt;使用以下命名启动 Hugo 本地预览服务：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# -D表示显示草稿
-hugo server -D
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;打开 &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;# -D表示显示草稿
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&lt;/span&gt;hugo server -D
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;打开 &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;strong&gt;http://localhost:1313/&lt;/strong&gt;&lt;/a&gt; ，即可看到站点页面（本地修改将即时更新）。&lt;/p&gt;
 &lt;h1 id=&#34;博客部署及更新&#34;&gt;博客部署及更新&lt;/h1&gt;
 &lt;h2 id=&#34;博客部署至github&#34;&gt;博客部署至github&lt;/h2&gt;
 &lt;p&gt;修改config.yaml文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;baseURL&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://&amp;lt;username&amp;gt;.github.io/&amp;#34;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;baseURL&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;https://&amp;lt;username&amp;gt;.github.io/&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;节点目录&lt;/strong&gt;执行命令：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo  # 生成静态页面文件至public/目录
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;进入public文件夹，使用git上传页面文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
-git init    &lt;span class=&#34;c1&#34;&gt;##初始化仓库&lt;/span&gt;
-git remote add origin https://github.com/zhj0513/zhj0513.github.io.git    &lt;span class=&#34;c1&#34;&gt;##链接远程仓库&lt;/span&gt;
-git add .
-git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
-git push -u origin master
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;hugo  # 生成静态页面文件至public/目录
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入public文件夹，使用git上传页面文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;cd&lt;/span&gt; public
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&lt;/span&gt;git init    &lt;span style=&#34;color:#6272a4&#34;&gt;##初始化仓库&lt;/span&gt;
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&lt;/span&gt;git remote add origin https://github.com/zhj0513/zhj0513.github.io.git    &lt;span style=&#34;color:#6272a4&#34;&gt;##链接远程仓库&lt;/span&gt;
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4&lt;/span&gt;git add .
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5&lt;/span&gt;git commit -m &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;6&lt;/span&gt;git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;至此，部署完成，可从&lt;code&gt;https://&amp;lt;username&amp;gt;.github.io/&lt;/code&gt;访问博客&lt;/p&gt;
 &lt;h2 id=&#34;博客更新&#34;&gt;博客更新：&lt;/h2&gt;
 &lt;ol&gt;
