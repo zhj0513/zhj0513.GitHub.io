@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='定位慢sql 1、查看慢查询日志确定已经执行完的慢查询 1mysql&amp;gt; set global slow_query_log = on; 2mysql&amp;gt; set global long_query_time = 1; 3mysql&amp;gt; show global variables like &amp;#34;datadir&amp;#34;; 4mysql&amp;gt; show global variables like &amp;#34;slow_query_log_file&amp;#34;; 5 6[root@mysqltest ~]# tail -n5 /data/mysql/data/3306/mysql-slow.log 7Time: 2019-05-21T09:15:06.255554&#43;08:00 8User@Host: root[root] @ localhost [] Id: 8591152 9Query_time: 10.000260 Lock_time: 0.000000 Rows_sent: 1 Rows_examined: 0 10SET timestamp=1558401306; 11select sleep(10); 可以看到查询时间、表锁时间、扫描行数Rows_examined。
+执行器调用一次，引擎实际扫描行数跟Rows_examined并不是完全相同。
+2、show processlist 查看正在执行的慢查询 1mysql&amp;gt; show processlist\G` 2 3`*************************** 10. row ***************************` 4`Id: 7651833` 5`User: one` 6`Host: 192.'><title>MySQL慢查询分析</title>
+
+<link rel='canonical' href='https://zhj0513.github.io/p/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%88%86%E6%9E%90/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MySQL慢查询分析'>
+<meta property='og:description' content='定位慢sql 1、查看慢查询日志确定已经执行完的慢查询 1mysql&amp;gt; set global slow_query_log = on; 2mysql&amp;gt; set global long_query_time = 1; 3mysql&amp;gt; show global variables like &amp;#34;datadir&amp;#34;; 4mysql&amp;gt; show global variables like &amp;#34;slow_query_log_file&amp;#34;; 5 6[root@mysqltest ~]# tail -n5 /data/mysql/data/3306/mysql-slow.log 7Time: 2019-05-21T09:15:06.255554&#43;08:00 8User@Host: root[root] @ localhost [] Id: 8591152 9Query_time: 10.000260 Lock_time: 0.000000 Rows_sent: 1 Rows_examined: 0 10SET timestamp=1558401306; 11select sleep(10); 可以看到查询时间、表锁时间、扫描行数Rows_examined。
+执行器调用一次，引擎实际扫描行数跟Rows_examined并不是完全相同。
+2、show processlist 查看正在执行的慢查询 1mysql&amp;gt; show processlist\G` 2 3`*************************** 10. row ***************************` 4`Id: 7651833` 5`User: one` 6`Host: 192.'>
+<meta property='og:url' content='https://zhj0513.github.io/p/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%88%86%E6%9E%90/'>
+<meta property='og:site_name' content='Gakkiの一般男性'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MySQL' /><meta property='article:published_time' content='2021-09-27T05:37:05&#43;08:00'/><meta property='article:modified_time' content='2021-09-27T05:37:05&#43;08:00'/><meta property='og:image' content='https://zhj0513.github.io/img/gakki_avatar.jpg' />
+<meta name="twitter:site" content="@coderzhj">
+    <meta name="twitter:creator" content="@coderzhj"><meta name="twitter:title" content="MySQL慢查询分析">
+<meta name="twitter:description" content="定位慢sql 1、查看慢查询日志确定已经执行完的慢查询 1mysql&amp;gt; set global slow_query_log = on; 2mysql&amp;gt; set global long_query_time = 1; 3mysql&amp;gt; show global variables like &amp;#34;datadir&amp;#34;; 4mysql&amp;gt; show global variables like &amp;#34;slow_query_log_file&amp;#34;; 5 6[root@mysqltest ~]# tail -n5 /data/mysql/data/3306/mysql-slow.log 7Time: 2019-05-21T09:15:06.255554&#43;08:00 8User@Host: root[root] @ localhost [] Id: 8591152 9Query_time: 10.000260 Lock_time: 0.000000 Rows_sent: 1 Rows_examined: 0 10SET timestamp=1558401306; 11select sleep(10); 可以看到查询时间、表锁时间、扫描行数Rows_examined。
+执行器调用一次，引擎实际扫描行数跟Rows_examined并不是完全相同。
+2、show processlist 查看正在执行的慢查询 1mysql&amp;gt; show processlist\G` 2 3`*************************** 10. row ***************************` 4`Id: 7651833` 5`User: one` 6`Host: 192."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://zhj0513.github.io/img/gakki_avatar.jpg' />
+    <link rel="shortcut icon" href="/img/github-alt.svg" />
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://zhj0513.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>返回</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/mysql/" style="background-color: #2a9d8f; color: #fff;">
+                MySQL
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2%E5%88%86%E6%9E%90/">MySQL慢查询分析</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 27, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="定位慢sql">定位慢sql</h2>
+<h3 id="1查看慢查询日志确定已经执行完的慢查询">1、查看慢查询日志确定已经执行完的慢查询</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#8be9fd">set</span> global slow_query_log <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">on</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#8be9fd">set</span> global long_query_time <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">show</span> global variables <span style="color:#ff79c6">like</span> <span style="color:#f1fa8c">&#34;datadir&#34;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">show</span> global variables <span style="color:#ff79c6">like</span> <span style="color:#f1fa8c">&#34;slow_query_log_file&#34;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>[root<span style="color:#ff79c6">@</span>mysqltest <span style="color:#ff79c6">~</span>]<span style="color:#6272a4"># tail -n5 /data/mysql/data/3306/mysql-slow.log
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#6272a4"></span><span style="color:#8be9fd">Time</span>: <span style="color:#bd93f9">2019</span><span style="color:#ff79c6">-</span><span style="color:#bd93f9">05</span><span style="color:#ff79c6">-</span><span style="color:#bd93f9">21</span>T09:<span style="color:#bd93f9">15</span>:<span style="color:#bd93f9">06</span>.<span style="color:#bd93f9">255554</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">08</span>:<span style="color:#bd93f9">00</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#ff79c6">User</span><span style="color:#ff79c6">@</span>Host: root[root] <span style="color:#ff79c6">@</span> localhost [] Id: <span style="color:#bd93f9">8591152</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>Query_time: <span style="color:#bd93f9">10</span>.<span style="color:#bd93f9">000260</span> Lock_time: <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000000</span> Rows_sent: <span style="color:#bd93f9">1</span> Rows_examined: <span style="color:#bd93f9">0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#8be9fd">SET</span> <span style="color:#8be9fd">timestamp</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1558401306</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#ff79c6">select</span> <span style="color:#50fa7b">sleep</span>(<span style="color:#bd93f9">10</span>);
+</code></pre></div><p>可以看到查询时间、表锁时间、扫描行数Rows_examined。</p>
+<p>执行器调用一次，引擎实际扫描行数跟Rows_examined并不是完全相同。</p>
+<h3 id="2show-processlist-查看正在执行的慢查询">2、show processlist 查看正在执行的慢查询</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">show</span> processlist\G<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#ff79c6">`***************************</span> <span style="color:#bd93f9">10</span>. row <span style="color:#ff79c6">***************************`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#ff79c6">`</span>Id: <span style="color:#bd93f9">7651833</span><span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#ff79c6">`</span><span style="color:#ff79c6">User</span>: one<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#ff79c6">`</span>Host: <span style="color:#bd93f9">192</span>.<span style="color:#bd93f9">168</span>.<span style="color:#bd93f9">1</span>.<span style="color:#bd93f9">251</span>:<span style="color:#bd93f9">52154</span><span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#ff79c6">`</span>db: ops<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#ff79c6">`</span>Command: Query<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#ff79c6">`</span><span style="color:#8be9fd">Time</span>: <span style="color:#bd93f9">3</span><span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#ff79c6">`</span>State: <span style="color:#ff79c6">User</span> sleep<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#ff79c6">`</span>Info: <span style="color:#ff79c6">select</span> <span style="color:#50fa7b">sleep</span>(<span style="color:#bd93f9">10</span>)<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#ff79c6">`</span>......<span style="color:#ff79c6">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#ff79c6">`</span><span style="color:#bd93f9">10</span> rows <span style="color:#ff79c6">in</span> <span style="color:#8be9fd">set</span> (<span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">00</span> sec)<span style="color:#ff79c6">`</span>
+</code></pre></div><p>可以看到执行时间和SQL语句</p>
+<h2 id="分析慢查询">分析慢查询</h2>
+<h3 id="1使用-explain-分析慢查询">1、使用 explain 分析慢查询</h3>
+<p>获取 MySQL 中 SQL 语句的执行计划.需要重点关注以下：</p>
+<ul>
+<li>select_type ：查询类型，是简单还是复杂查询</li>
+<li>type ：查询的表连接类型</li>
+<li>key ：实际选择的索引</li>
+<li>rows： 预计需要扫描的行数，对 InnoDB 来说，这个值是估值</li>
+<li>Extra ：附加信息</li>
+</ul>
+<p><strong>子查询sql语句：select lo,la from track where lid in (select lid from line where lname like &lsquo;%lname%');
+关联查询sql语句：select lo,la from track,line where line.lname like &lsquo;%lname%&rsquo; and line.lid=track.lid;</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">select_type</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SIMPLE</td>
+<td style="text-align:left">简单查询，不使用关联查询或子查询</td>
+</tr>
+<tr>
+<td style="text-align:left">PRIMARY</td>
+<td style="text-align:left">如果包含关联查询或者子查询，则最外层的查询部分标记为primary</td>
+</tr>
+<tr>
+<td style="text-align:left">UNION</td>
+<td style="text-align:left">联合查询中第二个及后面的查询</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPENDENT UNION</td>
+<td style="text-align:left">满足依赖外部的关联查询中第二个及以后的查询</td>
+</tr>
+<tr>
+<td style="text-align:left">UNION RESULT</td>
+<td style="text-align:left">联合查询的结果</td>
+</tr>
+<tr>
+<td style="text-align:left">SUBQUERY</td>
+<td style="text-align:left">子查询中的第一个查询</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPENDENT SUBQUERY</td>
+<td style="text-align:left">子查询中的第一个查询，并且依赖外部查询</td>
+</tr>
+<tr>
+<td style="text-align:left">DERIVED</td>
+<td style="text-align:left">用到派生表的查询</td>
+</tr>
+<tr>
+<td style="text-align:left">MATERIALIZED</td>
+<td style="text-align:left">被物化的子查询</td>
+</tr>
+<tr>
+<td style="text-align:left">UNCACHEABLE SUBQUERY</td>
+<td style="text-align:left">一个子查询的结果不能被缓存，必须重新评估外层查询的每一行</td>
+</tr>
+<tr>
+<td style="text-align:left">UNCACHEABLE UNION</td>
+<td style="text-align:left">关联查询第二个或后面的语句属于不可缓存的子查询</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">type</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">system</td>
+<td style="text-align:left">查询对象表只有一行数据</td>
+</tr>
+<tr>
+<td style="text-align:left">const</td>
+<td style="text-align:left">基于主键或唯一索引查询，最多返回一条结果</td>
+</tr>
+<tr>
+<td style="text-align:left">eq_ref</td>
+<td style="text-align:left">最多只返回一条符合条件的记录。</td>
+</tr>
+<tr>
+<td style="text-align:left">ref</td>
+<td style="text-align:left">基于普通索引的等值查询，或者表间等值连接</td>
+</tr>
+<tr>
+<td style="text-align:left">fulltext</td>
+<td style="text-align:left">全文检索</td>
+</tr>
+<tr>
+<td style="text-align:left">ref_or_null</td>
+<td style="text-align:left">表连接类型是</td>
+</tr>
+<tr>
+<td style="text-align:left">index_merge</td>
+<td style="text-align:left">利用多个索引</td>
+</tr>
+<tr>
+<td style="text-align:left">unique_subquery</td>
+<td style="text-align:left">子查询中使用唯一索引</td>
+</tr>
+<tr>
+<td style="text-align:left">index_subquery</td>
+<td style="text-align:left">子查询中使用普通索引</td>
+</tr>
+<tr>
+<td style="text-align:left">range</td>
+<td style="text-align:left">利用索引进行范围查询</td>
+</tr>
+<tr>
+<td style="text-align:left">index</td>
+<td style="text-align:left">全索引扫描</td>
+</tr>
+<tr>
+<td style="text-align:left">ALL</td>
+<td style="text-align:left">全表扫描</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Extra</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Using filesort</td>
+<td style="text-align:left">将用外部排序而不是索引排序，数据较小时从内存排序，否则需要在磁盘完成排序</td>
+</tr>
+<tr>
+<td style="text-align:left">Using temporary</td>
+<td style="text-align:left">需要创建一个临时表来存储结构，通常发生在对没有索引的列进行 GROUP BY 时</td>
+</tr>
+<tr>
+<td style="text-align:left">Using index</td>
+<td style="text-align:left">使用覆盖索引</td>
+</tr>
+<tr>
+<td style="text-align:left">Using where</td>
+<td style="text-align:left">使用 where 语句来处理结果</td>
+</tr>
+<tr>
+<td style="text-align:left">Impossible WHERE</td>
+<td style="text-align:left">对 where 子句判断的结果总是 false 而不能选择任何数据</td>
+</tr>
+<tr>
+<td style="text-align:left">Using join buffer（BlockNested Loop）</td>
+<td style="text-align:left">关联查询中，被驱动表的关联字段没索引</td>
+</tr>
+<tr>
+<td style="text-align:left">Using index condition</td>
+<td style="text-align:left">先条件过滤索引，再查数据</td>
+</tr>
+<tr>
+<td style="text-align:left">Select tables optimized away</td>
+<td style="text-align:left">使用某些聚合函数（比如 max、min）来访问存在索引的某个字段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2show-profile">2、show profile</h3>
+<p>了解 SQL 执行过程的资源使用情况，能让我们知道到底慢在哪个环节</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">select</span> <span style="color:#ff79c6">@@</span>have_profiling;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">select</span> <span style="color:#ff79c6">@@</span>profiling;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#8be9fd">set</span> profiling<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">select</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">from</span> t1 <span style="color:#ff79c6">where</span> b<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1000</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">show</span> profiles;  <span style="color:#6272a4">/*获取query id*/</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">show</span> profile <span style="color:#ff79c6">for</span> query <span style="color:#bd93f9">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#ff79c6">+----------------------+----------+</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#ff79c6">|</span> Status <span style="color:#ff79c6">|</span> Duration <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#ff79c6">+----------------------+----------+</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#ff79c6">|</span> <span style="color:#ff79c6">starting</span> <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000115</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#ff79c6">|</span> checking permissions <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000013</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#ff79c6">|</span> Opening <span style="color:#ff79c6">tables</span> <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000027</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style="color:#ff79c6">|</span> init <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000035</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#ff79c6">|</span> System <span style="color:#ff79c6">lock</span> <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000017</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span style="color:#ff79c6">|</span> optimizing <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000016</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="color:#ff79c6">|</span> statistics <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000025</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#ff79c6">|</span> preparing <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000020</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#ff79c6">|</span> executing <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000006</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#ff79c6">|</span> Sending data <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000294</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#ff79c6">|</span> end <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000009</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span style="color:#ff79c6">|</span> query end <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000012</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span style="color:#ff79c6">|</span> closing <span style="color:#ff79c6">tables</span> <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000011</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span style="color:#ff79c6">|</span> freeing items <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000024</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span style="color:#ff79c6">|</span> cleaning up <span style="color:#ff79c6">|</span> <span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">000016</span> <span style="color:#ff79c6">|</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span style="color:#ff79c6">+----------------------+----------+</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span style="color:#bd93f9">15</span> rows <span style="color:#ff79c6">in</span> <span style="color:#8be9fd">set</span>, <span style="color:#bd93f9">1</span> <span style="color:#50fa7b">warning</span> (<span style="color:#bd93f9">0</span>.<span style="color:#bd93f9">00</span> sec)
+</code></pre></div><h3 id="3trace">3、trace</h3>
+<p>使用 trace 查看优化器如何选择执行计划</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#8be9fd">set</span> session optimizer_trace<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;enabled=on&#34;</span>,end_markers_in_json<span style="color:#ff79c6">=</span><span style="color:#ff79c6">on</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#6272a4">/* optimizer_trace=&#34;enabled=on&#34; 表示开启 trace；end_markers_in_json=on 表示 JSON 输出开启结束标记 */</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">select</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">from</span> t1 <span style="color:#ff79c6">where</span> a <span style="color:#ff79c6">&gt;</span><span style="color:#bd93f9">900</span> <span style="color:#ff79c6">and</span> b <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">910</span> <span style="color:#ff79c6">order</span> <span style="color:#ff79c6">by</span> a;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>mysql<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">FROM</span> information_schema.OPTIMIZER_TRACE\G;
+</code></pre></div><p>TRACE包括准备阶段、优化阶段、执行阶段。trace中可以看到使用每个索引的成本。</p>
+<p>也可以看number_of_tmp_files中判断是否使用了临时文件。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mysql/">MySQL</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MySQL数据类型</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/mysql%E6%A6%82%E8%BF%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MySQL概述</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Gakkiの一般男性
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">目录</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#定位慢sql">定位慢sql</a>
+      <ol>
+        <li><a href="#1查看慢查询日志确定已经执行完的慢查询">1、查看慢查询日志确定已经执行完的慢查询</a></li>
+        <li><a href="#2show-processlist-查看正在执行的慢查询">2、show processlist 查看正在执行的慢查询</a></li>
+      </ol>
+    </li>
+    <li><a href="#分析慢查询">分析慢查询</a>
+      <ol>
+        <li><a href="#1使用-explain-分析慢查询">1、使用 explain 分析慢查询</a></li>
+        <li><a href="#2show-profile">2、show profile</a></li>
+        <li><a href="#3trace">3、trace</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -6,7 +6,25 @@
     <description>Recent content in Categories on Gakkiの一般男性</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Sep 2021 05:37:05 +0800</lastBuildDate><atom:link href="https://zhj0513.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Sep 2021 05:37:05 +0800</lastBuildDate><atom:link href="https://zhj0513.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL</title>
+      <link>https://zhj0513.github.io/categories/mysql/</link>
+      <pubDate>Mon, 27 Sep 2021 05:37:05 +0800</pubDate>
+      
+      <guid>https://zhj0513.github.io/categories/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试</title>
+      <link>https://zhj0513.github.io/categories/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Sun, 26 Sep 2021 05:37:05 +0800</pubDate>
+      
+      <guid>https://zhj0513.github.io/categories/%E9%9D%A2%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>部署</title>
       <link>https://zhj0513.github.io/categories/%E9%83%A8%E7%BD%B2/</link>
