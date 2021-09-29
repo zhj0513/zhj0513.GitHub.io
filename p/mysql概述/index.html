@@ -1152,16 +1152,7 @@ redo log 日志是存储在磁盘上的，那么此时是不是立马就将 redo
 <li>Having返回结果集以后对结果过滤，在Having中可以使用聚合函数。</li>
 </ul>
 <p>在查询过程中聚合语句（sum,min,max,avg,count）要比having子句优先执行。而where子句在查询过程中执行优先级高于聚合语句。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#ff79c6">select</span> 列 <span style="color:#ff79c6">from</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>表名
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#ff79c6">join</span> [表名]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span style="color:#ff79c6">on</span> [条件]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span style="color:#ff79c6">where</span> [查询条件]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span style="color:#ff79c6">group</span> <span style="color:#ff79c6">by</span> [分组表达式]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span style="color:#ff79c6">having</span> [分组过滤条件]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span style="color:#ff79c6">order</span> <span style="color:#ff79c6">by</span> [排序条件]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span style="color:#ff79c6">limit</span> [offset,] count;
-</code></pre></div><h2 id="高并发时如何避免重复插入-">高并发时，如何避免重复插入 ？</h2>
+<h2 id="高并发时如何避免重复插入-">高并发时，如何避免重复插入 ？</h2>
 <ul>
 <li>幂等：保证多次同意请求后结果一致</li>
 <li>并发控制：单表唯一索引、分布式多表分布式锁</li>

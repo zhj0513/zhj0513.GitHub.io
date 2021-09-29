@@ -1327,16 +1327,7 @@ float的指数范围为-127~ 128，而double的指数范围为-1023~1024，==指
 &lt;li&gt;Having返回结果集以后对结果过滤，在Having中可以使用聚合函数。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;在查询过程中聚合语句（sum,min,max,avg,count）要比having子句优先执行。而where子句在查询过程中执行优先级高于聚合语句。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;select&lt;/span&gt; 列 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt;
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&lt;/span&gt;表名
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;join&lt;/span&gt; [表名]
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;on&lt;/span&gt; [条件]
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;where&lt;/span&gt; [查询条件]
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;6&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;group&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;by&lt;/span&gt; [分组表达式]
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;7&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;having&lt;/span&gt; [分组过滤条件]
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;order&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;by&lt;/span&gt; [排序条件]
-&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;9&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;limit&lt;/span&gt; [offset,] count;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;高并发时如何避免重复插入-&#34;&gt;高并发时，如何避免重复插入 ？&lt;/h2&gt;
+&lt;h2 id=&#34;高并发时如何避免重复插入-&#34;&gt;高并发时，如何避免重复插入 ？&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;幂等：保证多次同意请求后结果一致&lt;/li&gt;
 &lt;li&gt;并发控制：单表唯一索引、分布式多表分布式锁&lt;/li&gt;
